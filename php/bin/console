@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotEnv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotEnv->load();
+
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+$application->addCommands([
+    new \Graphalistic\Neo4j\Console\Command\RawQueryCommand(),
+    new \Graphalistic\Neo4j\Console\Command\DeleteAllCommand(),
+    new \Graphalistic\Neo4j\Console\Command\CsvImportNodesCommand(),
+]);
+
+$application->run();

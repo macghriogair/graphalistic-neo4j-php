@@ -1,0 +1,14 @@
+### Create nodes with relation
+
+    bin/console graphalistic:query \
+        "CREATE (one:Person {name:'Bob'})-[:FRIEND_OF]->(two:Person {name:'Alice'})"
+
+###  Fetch Person nodes via cli
+
+    bin/console graphalistic:query \
+        "Match (n: Person) return n.name"
+
+### Fetch persons Bob is friend of
+
+    bin/console graphalistic:query \
+        "MATCH (n:Person)<-[:FRIEND_OF]-(Person {name:'Bob'}) RETURN n"

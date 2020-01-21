@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  neo4j-network:
+    driver: bridge
+
+services:
+  neo4j:
+    image: neo4j:${NEO4J_VERSION}
+    volumes:
+      - ../neo4j/data:/data
+      - ../neo4j/plugins:/plugins
+      - ../neo4j/conf:/conf
+    environment:
+      - NEO4J_AUTH=${NEO4J_AUTH}
+    networks:
+      - neo4j-network
+    ports:
+      - "$NEO4J_HTTP_PORT_HOST:7474"
+      - "$NEO4J_HTTPS_PORT_HOST:7473"
+      - "$NEO4J_BOLT_PORT_HOST:7687"
+
+  php-cli:
+    build:
+      context: ./php-cli
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+    volumes:
+      - ../php/:/php
+    networks:
+      - neo4j-network
+#    command:
+#      - /bin/sh
+#      - -c
+#      - |
+

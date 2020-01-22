@@ -1,5 +1,5 @@
 {
-    "name": "basilicom/rad-neo4j-php",
+    "name": "graphalistic/neo4-php",
     "description": "THE ACME PROJECT",
     "keywords": [],
     "license": "MIT",
@@ -7,6 +7,7 @@
     "authors": [],
     "repositories": [],
     "require": {
+        "php": ">=7.4",
         "graphaware/neo4j-php-client": "^4.0",
         "graphaware/neo4j-php-ogm": "@rc",
         "symfony/console": "^5.0",
@@ -14,7 +15,6 @@
         "vlucas/phpdotenv": "^4.1"
     },
     "require-dev": {
-        "php": ">=7.2",
         "phpunit/phpunit": "~8.0"
     },
     "autoload": {

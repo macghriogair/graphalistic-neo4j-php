@@ -12,3 +12,21 @@
 
     bin/console graphalistic:query \
         "MATCH (n:Person)<-[:FRIEND_OF]-(Person {name:'Bob'}) RETURN n"
+
+---
+
+Fetch Substances with Interactions
+
+    MATCH (s1:Substance)-[i:INTERACTS_WITH]->(s2) return s1.name, s2.name
+
+
+Fetch FAM with Interactions (via Substance interactions)
+
+    MATCH (d1:FAM)<-[*..2]->(:Substance)<-[:INTERACTS_WITH]->(:Substance)<-[*..2]->(d2:FAM) return d1.name as left,d2.name as right
+
+
+Result:
+
+    left,right
+    Clozapin HEXAL 200mg,Paracetamol STADA 125mg
+    Paracetamol STADA 125mg,Clozapin HEXAL 200mg
